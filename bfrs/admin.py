@@ -6,12 +6,15 @@ from bfrs.forms import UserForm, GroupForm
 #from reversion_compare.admin import CompareVersionAdmin
 
 
+
 class UserAdmin(AuthUserAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name',
-                    'is_active')
-    #readonly_fields=('username',)
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
     actions = None
     form = UserForm
+
+    # Make these fields read-only
+    readonly_fields = ('username', 'email', 'first_name', 'last_name')
+
     fieldsets = (
         (None, {'fields': ('username', 'email', ('first_name', 'last_name'),
                            'is_active', 'is_staff', 'groups')}),
